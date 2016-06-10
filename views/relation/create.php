@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Relation */
 
-$this->title = 'Create Relation';
-$this->params['breadcrumbs'][] = ['label' => 'Relations', 'url' => ['index']];
+$this->title = 'Добавить связь';
+$this->params['breadcrumbs'][] = ['label' => 'Детали и сборочные единицы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="relation-create">

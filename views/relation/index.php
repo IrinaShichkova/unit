@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Unit;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RelationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Relations';
+$this->title = 'Детали и сборочные единицы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="relation-index">
@@ -16,17 +18,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Relation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить связь', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'unit_id',
-            'parent_unit_id',
+            //'id',
+            [
+                'label' => 'Деталь',
+                'attribute' => 'unit_id',
+                'value' => function($model) {return $model->unit->name;},
+                'filter' => Html::activeDropDownList($searchModel, 'unit_id', ArrayHelper::map(Unit::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Выберите деталь']),
+            ],
+            [
+                'label' => 'Сборочная единица',
+                'attribute' => 'unit_id',
+                'value' => function($model) {return $model->parent_unit->name;},
+                'filter' => Html::activeDropDownList($searchModel, 'parent_unit_id', ArrayHelper::map(Unit::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Выберите сборочную единицу']),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

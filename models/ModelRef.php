@@ -44,8 +44,8 @@ class ModelRef extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'model_id' => 'Model ID',
-            'unit_id' => 'Unit ID',
+            'model_id' => 'Модель машины',
+            'unit_id' => 'ДСЕ',
         ];
     }
 

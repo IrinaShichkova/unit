@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ModelRef */
 
-$this->title = 'Update Model Ref: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Model Refs', 'url' => ['index']];
+$this->title = 'Изменить связь: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Связи моделей машин и ДСЕ', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="model-ref-update">
 

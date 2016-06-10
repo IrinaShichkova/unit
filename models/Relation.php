@@ -44,8 +44,8 @@ class Relation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'unit_id' => 'Unit ID',
-            'parent_unit_id' => 'Parent Unit ID',
+            'unit_id' => 'Деталь',
+            'parent_unit_id' => 'Сборочная единица',
         ];
     }
 
@@ -63,5 +63,10 @@ class Relation extends \yii\db\ActiveRecord
     public function getUnit()
     {
         return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
+    }
+
+    public function getParent_unit()
+    {
+        return $this->hasOne(Unit::className(), ['id' => 'parent_unit_id']);
     }
 }

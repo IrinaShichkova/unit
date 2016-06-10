@@ -26,6 +26,14 @@ class Type extends Model
         return $model;
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Тип',
+        ];
+    }
+
 
 
 

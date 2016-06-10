@@ -15,20 +15,18 @@ $this->title = 'Хранилище ДСЕ';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
-                <p><a class="btn btn-default" href="/unit">Unit &raquo;</a></p>
-                <p><a class="btn btn-default" href="/model">Model &raquo;</a></p>
+                <p><a class="btn btn-default" href="/unit">Детали и сборочные единицы &raquo;</a></p>
+                <p><a class="btn btn-default" href="/relation">Связь деталей и сборочных единиц &raquo;</a></p>
+
 
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-                <p><a class="btn btn-default" href="/model-ref">ModelRef &raquo;</a></p>
-                <p><a class="btn btn-default" href="/relation">Relation &raquo;</a></p>
+                <p><a class="btn btn-default" href="/model">Модели машин &raquo;</a></p>
+                <p><a class="btn btn-default" href="/model-ref">Соответствие ДСЕ моделям машин &raquo;</a></p>
+
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-                <p><a class="btn btn-default" href="/detal">Detal &raquo;</a></p>
-                <p><a class="btn btn-default" href="/moving">Moving &raquo;</a></p>
+                <p><a class="btn btn-default" href="/moving">Приход-расход &raquo;</a></p>
             </div>
         </div>
 

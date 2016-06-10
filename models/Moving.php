@@ -32,7 +32,7 @@ class Moving extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['unit_id', 'minus', 'amount'], 'required'],
+            [['unit_id', 'minus', 'plus'], 'required'],
             [['unit_id', 'plus', 'minus', 'amount', 'time'], 'integer'],
             [['unit_id'], 'exist', 'skipOnError' => true, 'targetClass' => Unit::className(), 'targetAttribute' => ['unit_id' => 'id']],
             [['timeStr'], 'string']
@@ -50,7 +50,7 @@ class Moving extends \yii\db\ActiveRecord
             'plus' => 'Приход',
             'minus' => 'Расход',
             'amount' => 'Остаток',
-            'time' => 'Дата',
+            'timeStr' => 'Дата',
         ];
     }
 
@@ -65,21 +65,24 @@ class Moving extends \yii\db\ActiveRecord
     
     public function save($runValidation = true, $attributeNames = null)
     {
-        if($last = self::find()->where(['unitg_id' => $this->unit_id])->orderBy('id DESC')->limit(1)->one()) {
+        if($last = self::find()->where(['unit_id' => $this->unit_id])->orderBy('id DESC')->limit(1)->one()) {
     	    $this->amount = $last->amount + $this->plus - $this->minus;
+        } else {
+    	    $this->amount = $this->plus - $this->minus;
         }
 	return parent::save($runValidation, $attributeNames);
     }
 
 
 
-    public function getTimeStr {
+    public function getTimeStr () {
         return null === $this->time ? '' : date('d.m.Y', $this->time);
     }
 
     public function setTimeStr($value)
     {
-        $this->time = \DateTime::createFromFormat('d.m.Y', $value);
+        $time = \DateTime::createFromFormat('d.m.Y', $value);
+        $this->time = $time->getTimestamp();
     }
 	
 

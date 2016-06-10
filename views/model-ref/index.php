@@ -2,12 +2,15 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Model;
+use app\models\Unit;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ModelRefSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Model Refs';
+$this->title = 'Связи моделей машин и ДСЕ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="model-ref-index">
@@ -16,17 +19,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Model Ref', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить новую связь', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'model_id',
-            'unit_id',
+            //'id',
+            [
+                'label' => 'Модель машины',
+                'attribute' => 'model_id',
+                'value' => function($model) {return $model->model->name;},
+                'filter' => Html::activeDropDownList($searchModel, 'model_id', ArrayHelper::map(Model::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Выберите модель']),
+            ],
+            [
+                'label' => 'ДСЕ',
+                'attribute' => 'unit_id',
+                'value' => function($model) {return $model->unit->name;},
+                'filter' => Html::activeDropDownList($searchModel, 'unit_id', ArrayHelper::map(Unit::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Выберите ДСЕ']),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

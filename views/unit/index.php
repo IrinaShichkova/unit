@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Type;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UnitSearch */
@@ -31,11 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Тип',
                 'attribute' => 'type.name',
+                'value' => function($model) {return $model->type->name;},
+                'filter' => Html::activeDropDownList($searchModel, 'type_id', Type::$list,['class'=>'form-control','prompt' => 'Выберите тип']),
             ],
             [
-                'label' => 'Запчасти',
+                'label' => 'Связь деталей и СЕ',
                 'format' => 'raw',
-                'value' => function($model) { return Html::a('Запчасти', ['/detal', 'id' => $model->id]); },
+                'value' => function($model) { return Html::a('Связи', ['/relation?RelationSearch[unit_id]=&RelationSearch[parent_unit_id]=' . $model->id]); },
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

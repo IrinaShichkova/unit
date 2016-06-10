@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Relation */
 
-$this->title = 'Update Relation: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Relations', 'url' => ['index']];
+$this->title = 'Изменить связь: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Детали и сборочные единицы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="relation-update">
 
